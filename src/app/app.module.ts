@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegistrationTemplateComponent } from './registration-template/registration-template.component';
+import { RegistrationReactiveComponent } from './registration-reactive/registration-reactive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationTemplateComponent
+    RegistrationTemplateComponent,
+    RegistrationReactiveComponent
   ],
   imports: [
     BrowserModule,

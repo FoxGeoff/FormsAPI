@@ -88,11 +88,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
  # 10.2.1  Reactive Forms
 
- ## Step: Add setup for reactive forms
+ *Listing 10.10. Adding support for reactive forms*
+ ## Check: Add setup for reactive forms
  1. Import ReactiveFormsModule in the `NgModule()` where your component is declared.
- 1. In your TypeScript code, create an instance of the model object FormGroup to store the form’s values.
+ 1. In your TypeScript code, create an instance of the model object `FormGroup` to store the form’s values.
  1. Create an HTML form template adding reactive directives.
  1. Use the instance of the FormGroup to access form’s values.
+
  ```
  import { ReactiveFormsModule } from '@angular/forms';
 
@@ -105,6 +107,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ...
 })
 ```
+*Listing 10.11. Creating a form model object*
+## Check: Add instance of model object "FormGroup" reactive forms
+```
+myFormModel: FormGroup;
+
+  constructor() {
+    this.myFormModel = new FormGroup({
+      username: new FormControl(''),
+      ssn: new FormControl('')
+    });
+  }
+ ``` 
 
 
 
