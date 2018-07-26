@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Angular Development with TypeScript
 
-## 10.2.1  Forms directives
+# 10.2.1  Forms directives
 ## Check: Preparing for using the template-driven API
 1. Add to app.module.ts ```import { FormsModule } from '@angular/forms';```
 
@@ -86,6 +86,25 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```
 1. The Submit button remains the same as in the plain HTML version of the form: ```<button type="submit">Submit</button>```
 
- 
+ # 10.2.1  Reactive Forms
+
+ ## Step: Add setup for reactive forms
+ 1. Import ReactiveFormsModule in the `NgModule()` where your component is declared.
+ 1. In your TypeScript code, create an instance of the model object FormGroup to store the form’s values.
+ 1. Create an HTML form template adding reactive directives.
+ 1. Use the instance of the FormGroup to access form’s values.
+ ```
+ import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    ReactiveFormsModule
+  ],
+  ...
+})
+```
+
 
 
