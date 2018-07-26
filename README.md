@@ -85,6 +85,29 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 </div>
 ```
 1. The Submit button remains the same as in the plain HTML version of the form: ```<button type="submit">Submit</button>```
+*Listing 10.9. A component that uses the template-driven Forms API*
+```
+@Component({
+  selector: 'app-root',
+  template: `
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <div>Username:        <input type="text"     name="username" ngModel></div>
+      <div>SSN:             <input type="text"     name="ssn"      ngModel></div>
+      <div ngModelGroup="passwordsGroup">
+        <div>Password:        <input type="password" name="password" ngModel></div>
+        <div>Confirm password: <input type="password" name="pconfirm"  ngModel></div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  `
+})
+export class AppComponent {
+  onSubmit(formData) {
+    console.log(formData);
+  }
+}
+```
+
 
  # 10.2.1  Reactive Forms
 
