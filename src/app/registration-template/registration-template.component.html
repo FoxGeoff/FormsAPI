@@ -1,0 +1,40 @@
+<h5>Template Form #1</h5>
+<hr>
+<form #f="ngForm">
+  <div ngModelGroup="passwords">
+    Password:
+    <input type="text" name="password" ngModel>
+    <br> Password Confirmation:
+    <input type="text" name="pconfirm" ngModel>
+  </div>
+
+</form>
+<!-- Access the values from the nested object
+  <pre>Password: {{ f.value.passwords.password }}</pre>
+-->
+<hr> Form model values:
+<pre>{{ f.value | json }}</pre>
+<br>
+<h5>Template Form #2</h5>
+<hr>
+<form #f2="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <!-- Form controls will be added here -->
+  <div>Username:
+    <input type="text" name="username" ngModel>
+  </div>
+  <div>SSN:
+    <input type="text" name="ssn" ngModel>
+  </div>
+  <div ngModelGroup="passwordsGroup">
+    <div>Password:
+      <input type="password" name="password" ngModel>
+    </div>
+    <div>Confirm password:
+      <input type="password" name="pconfirm" ngModel>
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+<hr>
