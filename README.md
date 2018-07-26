@@ -26,8 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-# Angulat Development with TypScript
+# Angular Development with TypeScript
 
+## 10.2.1  Forms directives
 ## Check: Preparing for using the template-driven API
 1. Add to app.module.ts ```import { FormsModule } from '@angular/forms';```
 
@@ -38,7 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <pre>{{ f.value | json }}</pre>
 ```
 1. Listing 10.3. Intercepting the submit event ```<form #f="ngForm" (ngSubmit)="onSubmit(f.value)"></form>```
-1. Listing 10.4. Adding the NgModel directive to an HTML element
+1. Listing 10.4. Adding the `NgModel` directive to an HTML element
 ```
 <form #f="ngForm">
   <input type="text"
@@ -60,19 +61,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <pre>Password: {{ f.value.passwords.password }}</pre>
 <pre>Password confirmation: {{ f.value.passwords.pconfirm }}</pre>
 ```
-1. Angular-aware form
+## 10.2.2 Check: Applying template-driven API to HTML forms
+
+1. Listing 10.6. Angular-aware form
 ```
 <form #f="ngForm"
       (ngSubmit)="onSubmit(f.value)">
     <!-- Form controls will be added here -->
 </form>
 ```
-1. The username and ssn fields
+1. Listing 10.7. The username and ssn fields
 ```
 <div>Username: <input type="text" name="username" ngModel></div>
 <div>SSN:      <input type="text" name="ssn"      ngModel></div>
 ```
-1. The password fields
+1. Listing 10.8. The password fields
 ```
 <div ngModelGroup="passwordsGroup">
   <div>Password: <input type="password" 
@@ -81,6 +84,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
                   name="pconfirm" ngModel></div>
 </div>
 ```
-1. ```<button type="submit">Submit</button>```
+1. The Submit button remains the same as in the plain HTML version of the form: ```<button type="submit">Submit</button>```
+
+ 
 
 
