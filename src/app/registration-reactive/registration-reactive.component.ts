@@ -11,12 +11,19 @@ export class RegistrationReactiveComponent implements OnInit {
 
   constructor() {
     this.myFormModel = new FormGroup({
-      username: new FormControl(''),
-      ssn: new FormControl('')
-   });
+      username: new FormControl(),
+      ssn: new FormControl(),
+      passwordsGroup: new FormGroup({
+        password: new FormControl(),
+        pconfirm: new FormControl()
+      })
+    });
   }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    console.log(this.myFormModel.value);
+  }
 }

@@ -1,4 +1,4 @@
-<h5>Template Form #1</h5>
+<h5>Template Forms partial examples</h5>
 <hr>
 <form #f="ngForm">
   <div ngModelGroup="passwords">
@@ -14,9 +14,9 @@
 -->
 <hr> Form model values:
 <pre>{{ f.value | json }}</pre>
-<br>
-<h5>Template Form #2</h5>
-<hr>
+<br><hr>
+<h2>Template Registration Form</h2>
+
 <form #f2="ngForm" (ngSubmit)="onSubmit(f.value)">
   <!-- Form controls will be added here -->
   <div>Username:

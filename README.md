@@ -88,13 +88,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
  # 10.2.1  Reactive Forms
 
- *Listing 10.10. Adding support for reactive forms*
- ## Check: Add setup for reactive forms
+ ## Check: Add setups for reactive forms #1~#4
  1. Import ReactiveFormsModule in the `NgModule()` where your component is declared.
  1. In your TypeScript code, create an instance of the model object `FormGroup` to store the form’s values.
  1. Create an HTML form template adding reactive directives.
  1. Use the instance of the FormGroup to access form’s values.
 
+*Listing 10.10. Adding support for reactive forms*
+ ## Check: Add setup for reactive forms #1
  ```
  import { ReactiveFormsModule } from '@angular/forms';
 
@@ -108,7 +109,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 })
 ```
 *Listing 10.11. Creating a form model object*
-## Check: Add instance of model object "FormGroup" reactive forms
+## Check: Add instance of model object "FormGroup" reactive forms #2
 ```
 myFormModel: FormGroup;
 
@@ -118,7 +119,142 @@ myFormModel: FormGroup;
       ssn: new FormControl('')
     });
   }
- ``` 
+ ```
+
+ ## Add instance of model object "FormGroup" reactive forms #3
+ *Listing 10.12. Adding validators to a form control*
+ ```
+let city = new FormControl('New York',
+                [Validators.required,
+                 Validators.minLength(2)]);
+ ```
+ *Listing 10.13. Creating a form model by instantiating a `FormGroup`*
+ ```
+ myFormModel: FormGroup;
+
+  constructor() {
+    this.myFormModel = new FormGroup({
+      username: new FormControl(''),
+      ssn: new FormControl(''),
+      passwordsGroup: new FormGroup({
+        password: new FormControl(''),
+        pconfirm: new FormControl('')
+      })
+    });
+  }
+```
+*Listing 10.14. Adding a `FormArray` to `FormGroup`*
+```
+let myFormModel = new FormGroup({
+  emails: new FormArray([
+    new FormControl()
+  ])
+});
+```
+*Listing 10.15. Binding the FormGroup to an HTML form*
+```
+@Component({
+  selector: 'app-frm1',
+  template: `
+    <form [formGroup]="myFormModel">
+    </form>
+  `
+})
+class Frm1Component {
+  myFormModel = new FormGroup({
+// form controls are created here });
+}
+```
+*Listing 10.16. Using a formGroupName*
+```
+@Component({
+  ...
+  template: `<form [formGroup]="myFormModel">
+               <div formGroupName="dateRange">...</div>
+             </form>`
+})
+class FormComponent {
+  myFormModel = new FormGroup({
+    dateRange: new FormGroup({
+      from: new FormControl(),
+      to  : new FormControl()
+    })
+  })
+}
+```
+*Listing 10.17. Completed form template*
+```
+<form [formGroup]="myFormModel">
+  <div formGroupName="dateRange">
+    <input type="date" formControlName="from">
+    <input type="date" formControlName="to">
+  </div>
+</form>
+```
+*Listing 10.18. FormControl*
+```
+@Component({
+   ...
+   template: `<input type="text" [formControl]="weatherControl">`
+})
+class FormComponent {
+  weatherControl: FormControl = new FormControl();
+
+  constructor() {
+    this.weatherControl.valueChanges
+        .pipe(
+          debounceTime(500),
+          switchMap(city => this.getWeather(city))
+        )
+        .subscribe(weather => console.log(weather));
+  }
+}
+```
+## 10.3.3  Applying reactive API to HTML forms
+## Check: Add reactive API to HTML forms
+*Listing 10.19. Creating a form model with reactive API*
+```
+@Component(...)
+class AppComponent {
+  myFormModel: FormGroup;
+
+  constructor() {
+    this.myFormModel = new FormGroup({
+      username: new FormControl(),
+      ssn: new FormControl(),
+      passwordsGroup: new FormGroup({
+        password: new FormControl(),
+        pconfirm: new FormControl()
+      })
+    });
+  }
+
+  onSubmit() {
+    console.log(this.myFormModel.value);
+  }
+}
+```
+*Listing 10.20. HTML binding to the model*
+```
+<form [formGroup]="myFormModel"
+      (ngSubmit)="onSubmit()"> 
+  <div>Username: <input type="text" formControlName="username"></div>
+  <div>SSN:      <input type="text" formControlName="ssn"></div>
+
+  <div formGroupName="passwordsGroup">
+    <div>Password: <input type="password" 
+                          formControlName="password"></div>
+     
+    <div>Confirm password: <input type="password" 
+                           formControlName="pconfirm"></div>
+  </div>   
+  <button type="submit">Submit</button>
+</form>
+```
+
+
+
+ 
 
 
 
